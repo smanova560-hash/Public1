@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Информатика 7-сынып — Түсінік және интерактивті тест</title>
+<meta name="description" content="7-сынып информатика: тақырыптарға түсінік, 5 нұсқа интерактивті тест, нәтижені Excel-ге жүктеу.">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0f1b2d;--card:#16263f;--card2:#1d3150;--ink:#eef4ff;--mute:#9fb3d1;--acc:#ffc640;--ok:#2ecc8f;--bad:#ff5d6c;--blue:#4aa8ff;--r:18px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Nunito,sans-serif;background:radial-gradient(circle at 15% 0%,#1f3a66 0,transparent 45%),radial-gradient(circle at 90% 100%,#3a2a12 0,transparent 40%),var(--bg);color:var(--ink);min-height:100vh;line-height:1.55}
+h1,h2,h3{font-family:Unbounded,sans-serif;line-height:1.2}
+.wrap{max-width:960px;margin:0 auto;padding:24px 18px 60px}
+header.top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:22px}
+.logo{font-family:Unbounded;font-weight:700;font-size:18px}.logo span{color:var(--acc)}
+.btn{border:0;cursor:pointer;font:800 15px Nunito;padding:12px 20px;border-radius:999px;background:var(--acc);color:#1a1300;transition:.2s;display:inline-flex;align-items:center;gap:8px}
+.btn:hover{transform:translateY(-2px);box-shadow:0 8px 20px -6px var(--acc)}
+.btn.ghost{background:transparent;color:var(--ink);border:2px solid #34507a}.btn.ghost:hover{box-shadow:none;border-color:var(--acc)}
+.btn.green{background:var(--ok);color:#002616}
+.back{display:none}
+.page{display:none;animation:fade .4s}.page.on{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1}}
+.hero{background:linear-gradient(135deg,var(--card2),var(--card));border-radius:28px;padding:40px 32px;border:1px solid #2a4468;position:relative;overflow:hidden}
+.hero h1{font-size:clamp(26px,5vw,42px)}.hero h1 em{font-style:normal;color:var(--acc)}
+.hero p{color:var(--mute);margin:14px 0 24px;max-width:560px}
+.hero .big{position:absolute;right:20px;top:10px;font-size:110px;opacity:.15}
+input[type=text]{width:100%;max-width:420px;padding:14px 18px;border-radius:14px;border:2px solid #34507a;background:#0c1626;color:var(--ink);font:600 16px Nunito;margin-bottom:14px}
+input:focus{outline:none;border-color:var(--acc)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-top:22px}
+.tile{background:var(--card);border:1px solid #2a4468;border-radius:var(--r);padding:20px;cursor:pointer;transition:.2s}
+.tile:hover{border-color:var(--acc);transform:translateY(-3px)}
+.tile b{font-family:Unbounded;font-size:15px;display:block;margin:6px 0}.tile small{color:var(--mute)}
+.tile .ic{font-size:30px}
+.sec{background:var(--card);border-radius:var(--r);padding:22px;margin-top:16px;border:1px solid #2a4468}
+.sec h3{color:var(--acc);font-size:16px;margin-bottom:6px}
+.sec .q{font-size:12px;color:var(--blue);font-weight:800;text-transform:uppercase;letter-spacing:.08em}
+.sec p,.sec li{color:#d4e0f3;margin-top:6px}.sec ul{padding-left:20px}
+code{background:#0c1626;padding:2px 6px;border-radius:6px;color:var(--acc)}
+.bar{height:10px;background:#0c1626;border-radius:9px;overflow:hidden;margin:14px 0 22px}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--blue),var(--acc));transition:.4s}
+.qcard{background:var(--card);border-radius:24px;padding:28px;border:1px solid #2a4468}
+.qcard h2{font-size:clamp(17px,3vw,22px);margin:6px 0 20px;white-space:pre-line}
+.opt{display:block;width:100%;text-align:left;margin-bottom:10px;padding:15px 18px;border-radius:14px;border:2px solid #2f4a72;background:var(--card2);color:var(--ink);font:600 16px Nunito;cursor:pointer;transition:.15s}
+.opt:hover:not(:disabled){border-color:var(--blue)}
+.opt.ok{border-color:var(--ok);background:#13402f}.opt.bad{border-color:var(--bad);background:#4a1b24}
+.emo{font-size:64px;text-align:center;height:80px;margin-top:6px}.emo.pop{animation:pop .5s}
+@keyframes pop{0%{transform:scale(0) rotate(-30deg)}70%{transform:scale(1.3)}100%{transform:scale(1)}}
+.fb{text-align:center;font-weight:800;min-height:26px}
+.row{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:12px}
+.res{text-align:center}.res .score{font-family:Unbounded;font-size:64px;color:var(--acc)}
+table{width:100%;border-collapse:collapse;margin-top:14px;font-size:14px}
+th,td{padding:10px;border-bottom:1px solid #2a4468;text-align:left}th{color:var(--acc)}
+.chip{display:inline-block;padding:2px 10px;border-radius:99px;font-size:12px;font-weight:800}
+.chip.y{background:#13402f;color:var(--ok)}.chip.n{background:#4a1b24;color:var(--bad)}
+footer{text-align:center;color:var(--mute);font-size:13px;margin-top:40px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div class="logo">Инфо<span>7</span> 💻</div>
+  <button class="btn ghost back" id="backBtn" onclick="goBack()">← Артқа</button>
+</header>
+
+<!-- HOME -->
+<section class="page on" id="home">
+  <div class="hero">
+    <div class="big">🧠</div>
+    <h1>Информатика <em>7-сынып</em><br>түсінік және тест</h1>
+    <p>Тақырыптарды оқып шық, содан кейін 5 нұсқаның бірін таңдап, 10 сұраққа жауап бер. Нәтижеңді Excel-ге жүктеп ал!</p>
+    <input type="text" id="name" placeholder="Аты-жөніңізді жазыңыз">
+    <div style="display:flex;gap:10px;flex-wrap:wrap">
+      <button class="btn" onclick="needName(()=>show('variants'))">🚀 Тестті бастау</button>
+      <button class="btn ghost" onclick="show('theory')">📘 Тақырыптарға түсінік</button>
+      <button class="btn ghost" onclick="show('history');renderHistory()">📊 Нәтижелер</button>
+    </div>
+  </div>
+  <div class="grid">
+    <div class="tile"><div class="ic">🔐</div><b>1-тоқсан</b><small>Ақпаратты өлшеу, кодтау, қауіпсіздік</small></div>
+    <div class="tile"><div class="ic">🧊</div><b>2-тоқсан</b><small>3D-модельдеу және анимация</small></div>
+    <div class="tile"><div class="ic">🐍</div><b>3-тоқсан</b><small>Python: шарттар, функциялар, ЖИ</small></div>
+    <div class="tile"><div class="ic">📈</div><b>4-тоқсан</b><small>Электрондық кестелер</small></div>
+  </div>
+</section>
+
+<!-- THEORY -->
+<section class="page" id="theory">
+  <h1>📘 Тақырыптарға түсінік</h1>
+  <div id="theoryList"></div>
+</section>
+
+<!-- VARIANTS -->
+<section class="page" id="variants">
+  <h1>Нұсқаны таңда</h1>
+  <p style="color:var(--mute);margin-top:8px">Әр нұсқада 10 сұрақ, барлық тоқсан тақырыптары бойынша.</p>
+  <div class="grid" id="varGrid"></div>
+</section>
+
+<!-- QUIZ -->
+<section class="page" id="quiz">
+  <div class="row" style="margin:0"><b id="qTitle"></b><span id="qCount" style="color:var(--mute)"></span></div>
+  <div class="bar"><i id="prog"></i></div>
+  <div class="qcard">
+    <span class="q" style="color:var(--blue);font-size:12px;font-weight:800" id="qGoal"></span>
+    <h2 id="qText"></h2>
+    <div id="opts"></div>
+    <div class="emo" id="emo"></div>
+    <div class="fb" id="fb"></div>
+    <div class="row"><span></span><button class="btn" id="nextBtn" onclick="nextQ()" style="visibility:hidden">Келесі →</button></div>
+  </div>
+</section>
+
+<!-- RESULT -->
+<section class="page" id="result">
+  <div class="qcard res">
+    <div class="emo pop" id="resEmo"></div>
+    <h2 id="resName"></h2>
+    <div class="score" id="resScore"></div>
+    <p id="resMsg" style="color:var(--mute)"></p>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:18px">
+      <button class="btn green" onclick="downloadExcel([lastResult])">📥 Excel-ге жүктеу</button>
+      <button class="btn ghost" onclick="show('variants')">🔁 Басқа нұсқа</button>
+      <button class="btn ghost" onclick="show('history');renderHistory()">📊 Барлық нәтижелер</button>
+    </div>
+    <table id="resTable"></table>
+  </div>
+</section>
+
+<!-- HISTORY -->
+<section class="page" id="history">
+  <h1>📊 Сақталған нәтижелер</h1>
+  <div class="sec">
+    <table id="histTable"></table>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:16px">
+      <button class="btn green" onclick="downloadExcel(getHist())">📥 Барлығын Excel-ге жүктеу</button>
+      <button class="btn ghost" onclick="if(confirm('Барлық нәтижені өшіру керек пе?')){localStorage.removeItem('info7');renderHistory()}">🗑 Тазалау</button>
+    </div>
+  </div>
+</section>
+
+<footer>Информатика 7-сынып · интерактивті тест · GitHub Pages үшін дайын</footer>
+</div>
+
+<script>
+const THEORY=[
+["1-тоқсан","Жеке қауіпсіздік және сервистік программалар","7.4.1.1","<p>Компьютер мен есептік жазбаны қорғау тәсілдері:</p><ul><li><b>Сенімді құпиясөз</b> — кемінде 8–12 таңба, бас/кіші әріп, сан, арнайы символ (мыс: <code>Ky7!pR#2m</code>).</li><li><b>Екі сатылы аутентификация</b> — құпиясөзден кейін SMS-код немесе қолданба коды сұралады.</li><li><b>Антивирус</b> — зиянды программаларды табады және жояды.</li><li><b>Мұрағаттау (резервтік көшірме)</b> — деректердің көшірмесін сақтау (ZIP, RAR, бұлт).</li></ul>"],
+["1-тоқсан","Ақпараттың өлшем бірліктері","7.2.1.1","<ul><li>1 байт = 8 бит</li><li>1 Кбайт = 1024 байт</li><li>1 Мбайт = 1024 Кбайт</li><li>1 Гбайт = 1024 Мбайт, 1 Тбайт = 1024 Гбайт</li></ul><p>Үлкен бірліктен кішіге — көбейтеміз, кішіден үлкенге — бөлеміз.</p>"],
+["1-тоқсан","Ақпаратты өлшеу (алфавиттік тәсіл)","7.2.1.2","<p><code>N = 2<sup>i</sup></code> — N алфавит қуаты, i — бір таңбаның салмағы (бит).</p><p><code>I = K · i</code> — K таңба саны, I — ақпарат көлемі.</p><p>Мысал: 32 таңбалы алфавит → i=5 бит; 100 таңба → 500 бит.</p>"],
+["1-тоқсан","Мәтін мен монохромды кескінді кодтау","7.2.1.3","<p><b>ASCII</b> — 1 таңбаға 8 бит (256 таңба). <b>Unicode</b> — 16 бит (65 536 таңба), барлық тілдер.</p><p>Мысал: 'A' = 65. Монохромды кескінде әр пиксель 1 битпен: 1 — қара, 0 — ақ.</p>"],
+["2-тоқсан","Үш өлшемді графика редакторы","7.3.2.1","<p>3D-модель — нысанның X, Y, Z осьтеріндегі компьютерлік көшірмесі. Қолданылуы: сәулет, ойындар, кино, медицина, автокөлік жобалау. Редакторлар: Blender, Tinkercad, SketchUp.</p>"],
+["2-тоқсан","Нысандардың 3D модельдері","7.1.1.1","<p>Графикалық примитивтер: куб, шар, цилиндр, конус, тор. Айналу денелері — жазық профильді ось айналасында бұру арқылы алынады (ваза, стақан).</p><p>Түрлендірулер: жылжыту (G), айналдыру (R), масштабтау (S).</p>"],
+["2-тоқсан","3D анимация","7.3.2.2","<p><b>Кілттік кадр</b> — нысанның орны, айналуы, масштабы жазылған кадр. Аралық кадрларды программа өзі есептейді. Blender-де кілттік кадр <code>I</code> пернесімен қойылады.</p>"],
+["3-тоқсан","Тармақталу алгоритмдері","7.3.1.1 · 7.3.1.2","<p><code>if</code>, <code>if…else</code>, <code>if…elif…else</code> — шартқа қарай әрекет таңдау.</p><p>Логикалық амалдар: <code>and</code> (екеуі де ақиқат), <code>or</code> (біреуі ақиқат), <code>not</code> (терісі).</p><p><code>if x>0 and x<10: print('бір таңбалы')</code></p>"],
+["3-тоқсан","Функциялар кітапханасы","7.3.1.3","<ul><li><code>len('сәлем')</code> → 5</li><li><code>round(3.67)</code> → 4</li><li><code>max(3,8,1)</code> → 8, <code>min(3,8,1)</code> → 1</li><li><code>random.randint(1,6)</code> → кездейсоқ сан (import random)</li></ul>"],
+["3-тоқсан","Функцияны анықтау","7.3.1.4","<p><code>def</code> кілттік сөзі, <code>return</code> мән қайтарады:</p><p><code>def kvadrat(a): return a*a</code> → <code>kvadrat(4)</code> = 16</p>"],
+["3-тоқсан","Шешім қабылдау жүйелері және ЖИ","7.3.3.1 · 7.4.2.1","<p>Білім <b>ереже</b> («ЕГЕР… ОНДА…») немесе <b>модель</b> түрінде беріледі. ЖИ берген кодты қолданбас бұрын: тексеру, түсіну, тестілеу, құпия деректерді бермеу керек — онда қате немесе қауіпті код болуы мүмкін.</p>"],
+["4-тоқсан","Электрондық кесте интерфейсі және деректер типтері","7.2.2.1","<p>Ұяшық — баған әрпі + жол нөмірі (B3). Деректер типтері: сан, мәтін, күн, пайыз, формула. Пішімдеу: қаріп, түс, жиек, туралау.</p>"],
+["4-тоқсан","Формулалар","7.2.2.2","<p>Формула <code>=</code> белгісінен басталады: <code>=A1+B1</code>, <code>=SUM(A1:A5)</code>.</p><p><b>Салыстырмалы</b> сілтеме (A1) көшіргенде өзгереді, <b>абсолютті</b> ($A$1) өзгермейді.</p>"],
+["4-тоқсан","Шартты пішімдеу","7.2.2.3","<p>Шартқа сай ұяшықтың түсі өзгереді. Мысалы: 5 деген баға — жасыл, 2 — қызыл.</p>"],
+["4-тоқсан","Диаграммалар","7.2.2.4","<p>Дөңгелек — бөліктердің үлесі; бағаналы — салыстыру; сызықтық — уақыт бойынша өзгеріс.</p>"]
+];
+
+// [goal, question, options, correctIndex]
+const V=[
+[
+["7.4.1.1","Ең сенімді құпиясөзді таңдаңыз:",["123456","qwerty","Ky7!pR#2m","aruzhan2010"],2],
+["7.2.1.1","1 байт неше битке тең?",["4","8","16","1024"],1],
+["7.2.1.1","2 Кбайт неше байт?",["2000","1024","2048","4096"],2],
+["7.2.1.2","Алфавит қуаты 16. Бір таңбаның салмағы:",["2 бит","4 бит","8 бит","16 бит"],1],
+["7.2.1.3","ASCII кестесінде бір таңба неше битпен кодталады?",["1","8","16","32"],1],
+["7.3.2.1","3D-модельдер қай салада қолданылады?",["Тек музыкада","Сәулет пен ойындарда","Тек мәтін теруде","Ешқайда"],1],
+["7.1.1.1","Төмендегілердің қайсысы графикалық примитив?",["Куб","Пиксель","Файл","Папка"],0],
+["7.3.1.1","x=7 болса, нәтижесі:\nif x>5: print('A')\nelse: print('B')",["A","B","AB","Қате"],0],
+["7.3.1.3","len('Python') нәтижесі:",["5","6","7","Python"],1],
+["7.2.2.2","Формула қандай белгімен басталады?",["+","#","=","$"],2]
+],[
+["7.4.1.1","Екі сатылы аутентификация дегеніміз:",["Екі рет құпиясөз жазу","Құпиясөз + қосымша код","Екі антивирус","Екі компьютер"],1],
+["7.2.1.1","1 Мбайт неше Кбайт?",["100","1000","1024","8"],2],
+["7.2.1.2","32 таңбалы алфавитпен жазылған 10 таңбалы хабарлама көлемі:",["32 бит","50 бит","320 бит","10 бит"],1],
+["7.2.1.3","Монохромды кескінде бір пиксельге неше бит керек?",["1","2","8","24"],0],
+["7.2.1.3","Unicode бір таңбаға неше бит бөледі?",["8","16","4","1"],1],
+["7.3.2.2","Анимацияда нысанның орны жазылған кадр:",["Бос кадр","Кілттік кадр","Фон","Текстура"],1],
+["7.1.1.1","Айналу денесіне мысал:",["Ваза","Куб","Жазық","Сызық"],0],
+["7.3.1.2","a=4. (a>2 and a<3) мәні:",["True","False","4","Қате"],1],
+["7.3.1.3","max(4, 9, 2) нәтижесі:",["4","2","9","15"],2],
+["7.2.2.3","5 баға жасыл болып боялуы — бұл:",["Сұрыптау","Шартты пішімдеу","Сүзгі","Диаграмма"],1]
+],[
+["7.4.1.1","Антивирустың негізгі қызметі:",["Суреттерді өңдеу","Зиянды программаларды табу және жою","Интернетті жылдамдату","Мәтін теру"],1],
+["7.2.1.1","16 бит неше байт?",["1","2","4","8"],1],
+["7.2.1.2","N = 2^i формуласында i деген:",["Таңба саны","Бір таңбаның салмағы","Алфавит қуаты","Файл аты"],1],
+["7.2.1.3","ASCII кодында 'A' әрпінің коды 65. 'B' коды:",["64","66","67","98"],1],
+["7.3.2.1","Төмендегілердің қайсысы 3D-редактор?",["Blender","Word","Paint","Calculator"],0],
+["7.1.1.1","Blender-де нысанды масштабтау пернесі:",["G","R","S","I"],2],
+["7.3.1.1","Үш және одан көп тармақ үшін қолданылатын құрылым:",["if","if…else","if…elif…else","print"],2],
+["7.3.1.4","def f(a): return a*2\nf(5) нәтижесі:",["5","7","10","25"],2],
+["7.4.2.1","ЖИ жазған кодты қолданбас бұрын не істеу керек?",["Бірден іске қосу","Тексеріп, түсініп, тестілеу","Достарға жіберу","Өшіру"],1],
+["7.2.2.2","Абсолютті сілтеме:",["A1","$A$1","A$","#A1"],1]
+],[
+["7.4.1.1","Деректерді мұрағаттау не үшін керек?",["Деректер жоғалса қалпына келтіру","Ойын ойнау","Экранды жарқырату","Принтерді қосу"],0],
+["7.2.1.1","3 байт неше бит?",["11","24","38","3"],1],
+["7.2.1.2","Бір таңба 8 бит. 50 таңбалы мәтін көлемі:",["50 байт","8 байт","400 байт","58 бит"],0],
+["7.2.1.3","Монохромды суретте 1 мен 0 нені білдіреді?",["Қызыл/көк","Қара/ақ","Үлкен/кіші","Дыбыс/тыныштық"],1],
+["7.3.2.2","Кілттік кадрлар арасындағы кадрларды кім жасайды?",["Пайдаланушы қолмен","Программа автоматты түрде","Принтер","Антивирус"],1],
+["7.1.1.1","Цилиндр, конус, шар — бұлар:",["Текстуралар","Графикалық примитивтер","Камералар","Жарық көздері"],1],
+["7.3.1.2","not True мәні:",["True","False","None","1"],1],
+["7.3.1.3","round(4.6) нәтижесі:",["4","4.6","5","6"],2],
+["7.3.3.1","«ЕГЕР жаңбыр жауса, ОНДА қолшатыр ал» — бұл:",["Ереже","Формула","Диаграмма","Файл"],0],
+["7.2.2.4","Бөліктердің үлесін көрсетуге ыңғайлы диаграмма:",["Сызықтық","Дөңгелек","Нүктелік","Кесте"],1]
+],[
+["7.4.1.1","Құпиясөзді қалай сақтау дұрыс?",["Стикерге жазып мониторға жапсыру","Ешкімге айтпай, әр сайтқа бөлек жасау","Барлық сайтқа бірдей","Досыңа айту"],1],
+["7.2.1.1","1 Гбайт неше Мбайт?",["1000","1024","512","8"],1],
+["7.2.1.2","64 таңбалы алфавиттің бір таңбасының салмағы:",["5 бит","6 бит","8 бит","64 бит"],1],
+["7.2.1.3","Барлық тілдердің таңбаларын кодтайтын кесте:",["ASCII","Unicode","Excel","Python"],1],
+["7.3.2.1","3D-модельдеудің артықшылығы:",["Нысанды жасамай тұрып көруге болады","Тек қағазда сызуға болады","Интернет керек емес","Дыбыс шығарады"],0],
+["7.3.2.2","Кілттік кадрда қандай қасиеттерді орнатуға болады?",["Орны, айналуы, масштабы","Тек түсі","Тек аты","Файл көлемі"],0],
+["7.3.1.2","x=3. (x<1 or x>2) мәні:",["True","False","3","Қате"],0],
+["7.3.1.3","min(7, 3, 9) нәтижесі:",["7","3","9","19"],1],
+["7.3.1.4","Python-да функция қай сөзбен анықталады?",["func","def","function","return"],1],
+["7.2.2.1","«25.09.2026» ұяшықтағы деректер типі:",["Мәтін","Күн","Формула","Пайыз"],1]
+]];
+
+let state={v:0,i:0,answers:[]},lastResult=null,stack=['home'];
+const $=id=>document.getElementById(id);
+function show(p,push=true){document.querySelectorAll('.page').forEach(s=>s.classList.remove('on'));$(p).classList.add('on');if(push&&stack[stack.length-1]!==p)stack.push(p);$('backBtn').style.display=p==='home'?'none':'inline-flex';scrollTo(0,0)}
+function goBack(){stack.pop();let p=stack[stack.length-1]||'home';if(p==='quiz'){stack.pop();p=stack[stack.length-1]||'home'}show(p,false)}
+function needName(cb){const n=$('name').value.trim();if(n.split(/\s+/).length<1||n.length<3){alert('Алдымен аты-жөніңізді жазыңыз!');$('name').focus();return}localStorage.setItem('info7name',n);cb()}
+$('name').value=localStorage.getItem('info7name')||'';
+
+$('theoryList').innerHTML=THEORY.map(t=>`<div class="sec"><div class="q">${t[0]} · ${t[2]}</div><h3>${t[1]}</h3>${t[3]}</div>`).join('');
+$('varGrid').innerHTML=V.map((_,k)=>`<div class="tile" onclick="startQuiz(${k})"><div class="ic">${['🟡','🔵','🟢','🟣','🔴'][k]}</div><b>${k+1}-нұсқа</b><small>10 сұрақ</small></div>`).join('');
+
+function startQuiz(k){state={v:k,i:0,answers:[]};show('quiz');renderQ()}
+function renderQ(){const q=V[state.v][state.i];
+$('qTitle').textContent=(state.v+1)+'-нұсқа';$('qCount').textContent=(state.i+1)+' / 10';$('prog').style.width=(state.i*10)+'%';
+$('qGoal').textContent='Оқу мақсаты '+q[0];$('qText').textContent=q[1];$('emo').textContent='🤔';$('emo').className='emo';$('fb').textContent='';$('nextBtn').style.visibility='hidden';
+$('opts').innerHTML=q[2].map((o,j)=>`<button class="opt" onclick="answer(${j})">${String.fromCharCode(65+j)}) ${o.replace(/</g,'&lt;')}</button>`).join('')}
+const GOOD=['😃','🥳','😎','🤩','👏'],BAD=['😢','😟','🙁','😬','😞'];
+function answer(j){const q=V[state.v][state.i],ok=j===q[3],b=document.querySelectorAll('.opt');
+b.forEach((x,k)=>{x.disabled=true;if(k===q[3])x.classList.add('ok')});if(!ok)b[j].classList.add('bad');
+state.answers.push({goal:q[0],q:q[1].replace(/\n/g,' '),given:q[2][j],right:q[2][q[3]],ok});
+const e=$('emo');e.textContent=ok?GOOD[Math.random()*5|0]:BAD[Math.random()*5|0];e.classList.remove('pop');void e.offsetWidth;e.classList.add('pop');
+$('fb').textContent=ok?'Дұрыс! Жарайсың!':'Қате. Дұрыс жауап: '+q[2][q[3]];$('fb').style.color=ok?'var(--ok)':'var(--bad)';
+$('nextBtn').textContent=state.i===9?'Нәтижені көру 🏁':'Келесі →';$('nextBtn').style.visibility='visible'}
+function nextQ(){if(state.i<9){state.i++;renderQ()}else finish()}
+function finish(){const s=state.answers.filter(a=>a.ok).length,pct=s*10;
+lastResult={name:localStorage.getItem('info7name'),variant:state.v+1,score:s,pct,grade:pct>=85?5:pct>=65?4:pct>=40?3:2,date:new Date().toLocaleString('kk-KZ'),answers:state.answers};
+const h=getHist();h.push(lastResult);localStorage.setItem('info7',JSON.stringify(h));
+$('resEmo').textContent=pct>=85?'🏆':pct>=65?'😊':pct>=40?'😐':'😢';
+$('resName').textContent=lastResult.name+' · '+lastResult.variant+'-нұсқа';$('resScore').textContent=s+'/10';
+$('resMsg').textContent=`${pct}% · Баға: ${lastResult.grade} · `+(pct>=85?'Керемет нәтиже!':pct>=65?'Жақсы, тағы аздап!':pct>=40?'Тақырыптарды қайталап шық.':'Түсінікті қайта оқып, тағы тапсыр.');
+$('resTable').innerHTML='<tr><th>#</th><th>Сұрақ</th><th>Жауабың</th><th></th></tr>'+state.answers.map((a,k)=>`<tr><td>${k+1}</td><td>${esc(a.q)}</td><td>${esc(a.given)}</td><td><span class="chip ${a.ok?'y':'n'}">${a.ok?'✔':'✘'}</span></td></tr>`).join('');
+stack=['home','variants'];show('result')}
+const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');
+const getHist=()=>JSON.parse(localStorage.getItem('info7')||'[]');
+function renderHistory(){const h=getHist();$('histTable').innerHTML=h.length?'<tr><th>Аты-жөні</th><th>Нұсқа</th><th>Ұпай</th><th>Баға</th><th>Күні</th></tr>'+h.map(r=>`<tr><td>${esc(r.name)}</td><td>${r.variant}</td><td>${r.score}/10</td><td>${r.grade}</td><td>${r.date}</td></tr>`).join(''):'<tr><td>Әзірге нәтиже жоқ.</td></tr>'}
+function downloadExcel(list){if(!list.length||!list[0]){alert('Нәтиже жоқ');return}
+let x='<table border="1"><tr><th>Аты-жөні</th><th>Нұсқа</th><th>Ұпай</th><th>Пайыз</th><th>Баға</th><th>Күні</th></tr>'+list.map(r=>`<tr><td>${esc(r.name)}</td><td>${r.variant}</td><td>${r.score}</td><td>${r.pct}%</td><td>${r.grade}</td><td>${r.date}</td></tr>`).join('')+'</table><br>';
+list.forEach(r=>{x+=`<table border="1"><tr><th colspan="5">${esc(r.name)} — ${r.variant}-нұсқа</th></tr><tr><th>№</th><th>Оқу мақсаты</th><th>Сұрақ</th><th>Жауабы</th><th>Дұрыс жауап</th></tr>`+r.answers.map((a,k)=>`<tr><td>${k+1}</td><td>${a.goal}</td><td>${esc(a.q)}</td><td style="color:${a.ok?'green':'red'}">${esc(a.given)}</td><td>${esc(a.right)}</td></tr>`).join('')+'</table><br>'});
+const html='<html xmlns:x="urn:schemas-microsoft-com:office:excel"><head><meta charset="UTF-8"></head><body>'+x+'</body></html>';
+const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['\ufeff'+html],{type:'application/vnd.ms-excel'}));a.download='informatika_7_natizhe.xls';a.click()}
+</script>
+</body>
+</html>
